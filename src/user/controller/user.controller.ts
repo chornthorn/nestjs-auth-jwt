@@ -3,7 +3,7 @@ import { from, Observable } from 'rxjs';
 import { IUser } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

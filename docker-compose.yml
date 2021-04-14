@@ -13,18 +13,17 @@ services:
             PORT: 3000
         ports: 
             - "8080:3000"
-
     postgres:
         image: postgres:10.4
-        ports:
-            - "35000:5432"
         environment: 
             POSTGRES_USER: user
             POSTGRES_PASSWORD: password
             POSTGRES_DB: db
+        ports:
+            - "35000:5432"
     ### Postgres adminer
     postgres_admin:
-        image: dpage/pgadmin4:4.28
+        image: dpage/pgadmin4:5.1
         depends_on: 
             - postgres
         environment: 
