@@ -1,5 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
 import { from, Observable } from 'rxjs';
+import { CreateUserDto } from '../models/dto/CreateUser.dto';
+import { LoginUserDto } from '../models/dto/LoginUser.dto';
 import { IUser } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 
@@ -13,7 +15,13 @@ export class UserController {
   }
 
   @Post()
-  addUser(@Body() user: IUser): Observable<IUser> {
-    return this.userService.addUser(user);
+  create(@Body() createUserDto: CreateUserDto): Observable<IUser> {
+    return this.userService.create(createUserDto);
+  }
+
+  @Post('/login')
+  @HttpCode(200)
+  login(loginUserDto: LoginUserDto): Observable<string> {
+    return this.userService.login(loginUserDto);
   }
 }
