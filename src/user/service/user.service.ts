@@ -50,9 +50,13 @@ export class UserService {
             loginUserDto.password,
             user.password,
           ).pipe(
-            map((passwordsMatches: boolean) => {
+            switchMap((passwordsMatches: boolean) => {
               if (passwordsMatches) {
-                return 'Login was successfully';
+                return this.findOne(user.id).pipe(
+                  switchMap((user: IUser) => {
+                    return this.authService.generateJwt(user);
+                  }),
+                );
               } else {
                 throw new HttpException(
                   'Login was not successful',
@@ -66,6 +70,10 @@ export class UserService {
         }
       }),
     );
+  }
+
+  findOne(id: number): Observable<IUser> {
+    return from(this.userRepository.findOne({ id }));
   }
 
   private findUserByEmail(email: string): Observable<IUser> {
