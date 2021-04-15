@@ -24,6 +24,8 @@ FROM node:14 AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+ARG JWT_SECRET=thorn_secret
+ENV JWT_SECRET=${JWT_SECRET}
 
 #Set working directory
 WORKDIR /imake/src/app
