@@ -1,34 +1,43 @@
-version: "3.9" 
-services: 
-    api:
-        # image: imake/nest-dockerized
-        build: 
-            dockerfile: Dockerfile
-            context: .
-        depends_on: 
-            - postgres
-        environment: 
-            DATABASE_URL: postgres://user:password@postgres:5432/db
-            NODE_ENV: development
-            JWT_SECRET: thorn_secret
-            PORT: 3000
-        ports: 
-            - "8080:3000"
-    postgres:
-        image: postgres:10.4
-        environment: 
-            POSTGRES_USER: user
-            POSTGRES_PASSWORD: password
-            POSTGRES_DB: db
-        ports:
-            - "35000:5432"
-    ### Postgres adminer
-    postgres_admin:
-        image: dpage/pgadmin4:5.1
-        depends_on: 
-            - postgres
-        environment: 
-            PGADMIN_DEFAULT_EMAIL: admin@admin.de
-            PGADMIN_DEFAULT_PASSWORD: password
-        ports: 
-            - "5050:80"
+version: '3.9'
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      # Only will build development stage from our dockerfile
+      target: development
+    # mounn our host directory to docker container
+    # Mount (.) current directory to the docker container imake/src/app
+    volumes:
+        - .:/imake/src/app
+        - ./imake/src/app/node_modules
+    command: npm run start:dev
+    #command: npm run start:debug
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/db
+      NODE_ENV: development
+      JWT_SECRET: thorn_secret
+      PORT: 3000
+    ports:
+      - 8080:3000
+      - 9229:9229
+  postgres:
+    image: postgres:10.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - 35000:5432
+  ### Postgres adminer
+  postgres_admin:
+    image: dpage/pgadmin4:5.1
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.de
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - 5050:80

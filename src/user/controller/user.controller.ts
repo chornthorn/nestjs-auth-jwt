@@ -42,4 +42,8 @@ export class UserController {
       }),
     );
   }
+  @Get('/hello')
+  helloWorld(): string {
+    return 'Hello world';
+  }
 }
