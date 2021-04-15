@@ -19,9 +19,9 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Post('/login')
+  @Post('login')
   @HttpCode(200)
-  login(loginUserDto: LoginUserDto): Observable<string> {
+  login(@Body() loginUserDto: LoginUserDto): Observable<string> {
     return this.userService.login(loginUserDto);
   }
 }
