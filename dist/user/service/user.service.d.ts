@@ -16,4 +16,7 @@ export declare class UserService {
     private findUserByEmail;
     private validatePassword;
     private mailExists;
+    deleteOne(id: number): Observable<any>;
+    updateRoleOfUser(id: number, user: IUser): Observable<any>;
+    updateOne(id: number, user: IUser): Observable<any>;
 }

@@ -8,6 +8,8 @@ export declare class UserController {
     constructor(userService: UserService);
     findAllUser(): Observable<IUser[]>;
     create(createUserDto: CreateUserDto): Observable<IUser>;
+    deleteOne(id: string): Observable<any>;
     login(loginUserDto: LoginUserDto): Observable<any>;
+    updateRoleOfUser(id: string, user: IUser): Observable<IUser>;
     helloWorld(): string;
 }

@@ -103,4 +103,22 @@ export class UserService {
       }),
     );
   }
+
+  deleteOne(id: number): Observable<any> {
+    return from(this.userRepository.delete(id));
+  }
+  updateRoleOfUser(id: number, user: IUser): Observable<any> {
+    const userTemp = new UserEntity();
+    userTemp.role = user.role;
+    return from(this.userRepository.update(id, userTemp));
+  }
+  updateOne(id: number, user: IUser): Observable<any> {
+    delete user.email;
+    delete user.password;
+    delete user.role;
+
+    return from(this.userRepository.update(id, user)).pipe(
+      switchMap(() => this.findOne(id)),
+    );
+  }
 }

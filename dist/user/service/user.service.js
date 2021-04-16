@@ -93,6 +93,20 @@ let UserService = class UserService {
             }
         }));
     }
+    deleteOne(id) {
+        return rxjs_1.from(this.userRepository.delete(id));
+    }
+    updateRoleOfUser(id, user) {
+        const userTemp = new user_entity_1.UserEntity();
+        userTemp.role = user.role;
+        return rxjs_1.from(this.userRepository.update(id, userTemp));
+    }
+    updateOne(id, user) {
+        delete user.email;
+        delete user.password;
+        delete user.role;
+        return rxjs_1.from(this.userRepository.update(id, user)).pipe(operators_1.switchMap(() => this.findOne(id)));
+    }
 };
 UserService = __decorate([
     common_1.Injectable(),
