@@ -4651,8 +4651,13 @@
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644",
         "affectsGlobalScope": false
       },
+      "../src/utilities/transform.interceptor.ts": {
+        "version": "050bc490e0df67006ac44f5cdca810e1e7f62610d6e64b6ab5a2ae8cbb9fc43d",
+        "signature": "0da7e4ad3b8f865dde74f5ede7e9731628a7a97582ecafab355d7dfc73ec9cb6",
+        "affectsGlobalScope": false
+      },
       "../src/main.ts": {
-        "version": "1fdb7edbfe0957e8223bef5455321fdad58aa2706f260b3b79ea045381ccd379",
+        "version": "a2ef54e58d2325bd9b880c6696d661c208548fb72d58b72c6e1a0fd6c5070c45",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
         "affectsGlobalScope": false
       },
@@ -8524,7 +8529,8 @@
       "../src/main.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../node_modules/@nestjs/core/index.d.ts",
-        "../src/app.module.ts"
+        "../src/app.module.ts",
+        "../src/utilities/transform.interceptor.ts"
       ],
       "../src/user/controller/user.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
@@ -8568,6 +8574,11 @@
         "../src/user/controller/user.controller.ts",
         "../src/user/models/user.entity.ts",
         "../src/user/service/user.service.ts"
+      ],
+      "../src/utilities/transform.interceptor.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/rxjs/index.d.ts",
+        "../node_modules/rxjs/operators/index.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -12198,6 +12209,10 @@
         "../src/user/models/dto/LoginUser.dto.ts",
         "../src/user/models/user.entity.ts",
         "../src/user/models/user.interface.ts"
+      ],
+      "../src/utilities/transform.interceptor.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/rxjs/index.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -13174,7 +13189,8 @@
       "../src/user/models/user.entity.ts",
       "../src/user/models/user.interface.ts",
       "../src/user/service/user.service.ts",
-      "../src/user/user.module.ts"
+      "../src/user/user.module.ts",
+      "../src/utilities/transform.interceptor.ts"
     ]
   },
   "version": "4.2.4"
